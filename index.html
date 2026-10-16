@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YaBeto Event — Découvrir, réserver et participer aux événements de Kinshasa</title>
+  <meta name="description" content="YaBeto Event, ce qui nous rassemble. Trouvez des événements à Kinshasa, réservez avec Mobile Money et entrez avec un billet QR sécurisé. Organisateurs : publiez, vendez et contrôlez les accès.">
+  <meta name="theme-color" content="#ff8a1f">
+  <meta property="og:title" content="YaBeto Event — Ce qui nous rassemble">
+  <meta property="og:description" content="Billetterie et découverte d'événements à Kinshasa : billet QR, Mobile Money, espace organisateur.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://yabeto-event.vercel.app/images/yabetoLogo.jpeg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ff8a1f'/%3E%3Ctext x='16' y='24' font-size='21' font-weight='800' text-anchor='middle' fill='%23121212' font-family='Arial'%3EY%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Icônes -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M4 7h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2M14 18v2"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.5 2 4.5 5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 0 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="m8.2 10.8 7.6-3.6M8.2 13.2l7.6 3.6"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M16 14.5h2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4 3 20h18z"/><path d="M12 10v4M12 17h.01"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l9 9-8 8z"/><circle cx="7.5" cy="8.5" r="1"/></symbol>
+  <symbol id="i-call" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18c1.5 0 2-1 1.5-2.2-.6-1.4.3-2.8 1.8-2.8H18a3 3 0 0 0 3-3c0-5-4-10-9-10z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16" cy="10" r="1"/></symbol>
+  <symbol id="i-run" viewBox="0 0 24 24"><circle cx="14" cy="4.5" r="2"/><path d="m7 21 3-6 3 2v4M10 15l1-5 4 2 3 3M11 10 8 12"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/></symbol>
+</svg>
+
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<!-- ====================== EN-TÊTE ====================== -->
+<header class="site-header" id="top">
+  <div class="container nav">
+    <a href="#accueil" class="brand" aria-label="YaBeto Event, accueil">
+      <span class="brand-mark" role="img" aria-label="Symbole YaBeto : trois personnes formant un Y"></span>
+      <span class="brand-name"><span class="b1">Ya</span><span class="b2">Beto</span><small>EVENT</small></span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+      <svg class="ic" style="width:28px;height:28px"><use href="#i-menu"/></svg>
+    </button>
+
+    <nav class="nav-links" id="navLinks" aria-label="Navigation principale">
+      <a href="#evenements">Événements</a>
+      <a href="#fonctionnement">Fonctionnement</a>
+      <a href="#organisateurs">Organisateurs</a>
+      <a href="#billet">Billet QR</a>
+      <a href="#tourisme">Tourisme</a>
+      <a href="#apropos">À propos</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="btn btn--primary">Être prévenu du lancement</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+<!-- ====================== HERO ====================== -->
+<section class="hero" id="accueil">
+  <div class="container hero-grid">
+    <div>
+      <h1>Votre prochaine sortie commence ici.</h1>
+      <p class="hero-lead">YaBeto Event réunit les événements de Kinshasa au même endroit. Trouvez, réservez avec Mobile Money, puis entrez avec un billet QR sur votre téléphone.</p>
+      <div class="hero-actions">
+        <a href="#evenements" class="btn btn--primary">Découvrir les événements</a>
+        <a href="#organisateurs" class="btn btn--ghost">Publier un événement</a>
+      </div>
+      <ul class="hero-points">
+        <li><svg class="ic"><use href="#i-wallet"/></svg>Paiement Mobile Money</li>
+        <li><svg class="ic"><use href="#i-qr"/></svg>Billet QR unique</li>
+        <li><svg class="ic"><use href="#i-share"/></svg>Partage par WhatsApp</li>
+      </ul>
+    </div>
+
+    <div class="ticket-wrap">
+      <article class="ticket" aria-label="Exemple de billet YaBeto Event">
+        <div class="ticket-top">
+          <span class="ticket-tag"><svg class="ic" style="width:14px;height:14px"><use href="#i-ticket"/></svg>Billet numérique</span>
+          <div class="ticket-title">Soirée rumba live</div>
+          <dl class="ticket-meta">
+            <div><dt>Date</dt><dd>Sam. 28 nov.</dd></div>
+            <div><dt>Heure</dt><dd>19 h 00</dd></div>
+            <div><dt>Lieu</dt><dd>Gombe, Kinshasa</dd></div>
+            <div><dt>Type</dt><dd>Standard × 2</dd></div>
+          </dl>
+        </div>
+        <div class="ticket-cut" aria-hidden="true"></div>
+        <div class="ticket-bottom">
+          <div class="qr-box" aria-hidden="true">
+            <div id="heroQr"></div>
+            <span class="scanline" id="heroScan"></span>
+          </div>
+          <div>
+            <span class="status" id="heroStatus"><svg class="ic" style="width:16px;height:16px"><use href="#i-qr"/></svg><span>À scanner</span></span>
+            <p class="ticket-note">Exemple de billet. Un QR unique par billet, vérifié à l'entrée.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CATÉGORIES ====================== -->
+<div class="marquee" aria-label="Catégories d'événements">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Musique et spectacles</span><span>Conférences et forums</span><span>Formation et développement personnel</span><span>Entrepreneuriat et affaires</span><span>Technologie et innovation</span><span>Culture et arts</span><span>Sports et compétitions</span><span>Loisirs en famille</span><span>Gastronomie</span><span>Mode et beauté</span><span>Santé et bien-être</span><span>Universités et jeunesse</span><span>Tourisme et découverte</span><span>Communauté et citoyenneté</span>
+  </div>
+</div>
+
+<!-- ====================== CHIFFRES ====================== -->
+<section class="stats" aria-label="YaBeto Event en chiffres">
+  <div class="container stats-grid">
+    <div class="stat"><strong data-count="22">22</strong><span>familles d'événements, de la musique au tourisme</span></div>
+    <div class="stat"><strong data-count="4">4</strong><span>espaces : participant, organisateur, contrôleur, administration</span></div>
+    <div class="stat"><strong data-count="4">4</strong><span>types de QR codes, chacun avec un rôle précis</span></div>
+    <div class="stat"><strong><span data-count="34.7" data-decimals="1">34,7</span> M</strong><span>d'internautes en RDC fin 2025, majoritairement sur mobile</span></div>
+  </div>
+</section>
+
+<!-- ====================== ÉVÉNEMENTS ====================== -->
+<section class="section" id="evenements">
+  <div class="container">
+    <div class="section-head">
+      <h2>Ce qui se prépare à Kinshasa</h2>
+      <p>Concerts, forums, formations, sport, culture : filtrez par catégorie et trouvez l'événement qui vous correspond.</p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filtrer par catégorie" id="filters">
+      <button class="chip is-active" data-filter="all">Tous</button>
+      <button class="chip" data-filter="Musique">Musique</button>
+      <button class="chip" data-filter="Business">Business</button>
+      <button class="chip" data-filter="Tech">Tech</button>
+      <button class="chip" data-filter="Culture">Culture</button>
+      <button class="chip" data-filter="Sport">Sport</button>
+      <button class="chip" data-filter="Formation">Formation</button>
+      <button class="chip" data-filter="Tourisme">Tourisme</button>
+    </div>
+
+    <div class="events-grid" id="eventsGrid" aria-live="polite"></div>
+    <p class="fineprint">Aperçu : ces événements sont des exemples pour illustrer la plateforme. Les vrais événements arriveront avec le lancement.</p>
+  </div>
+</section>
+
+<!-- ====================== FONCTIONNEMENT ====================== -->
+<section class="section section--soft" id="fonctionnement">
+  <div class="container">
+    <div class="section-head">
+      <h2>Simple pour ceux qui sortent, clair pour ceux qui organisent</h2>
+      <p>Chaque parcours tient en quelques étapes, sur un téléphone comme sur un ordinateur.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Choisir un parcours">
+      <button class="tab is-active" role="tab" aria-selected="true" data-tab="participant">Je participe</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="organisateur">J'organise</button>
+    </div>
+
+    <div class="steps is-active" id="tab-participant" role="tabpanel">
+      <div class="step"><h3>Parcourez</h3><p>Recherchez par date, lieu, catégorie ou prix. Aucun compte n'est nécessaire pour consulter.</p></div>
+      <div class="step"><h3>Choisissez</h3><p>Sélectionnez le type de billet et la quantité. Appliquez un code promo si vous en avez un.</p></div>
+      <div class="step"><h3>Payez</h3><p>Mobile Money ou carte bancaire. Le récapitulatif affiche le prix, les frais et le total avant de confirmer.</p></div>
+      <div class="step"><h3>Recevez</h3><p>Votre billet QR arrive dans « Mes billets ». Partagez-le ou retrouvez-le à tout moment.</p></div>
+      <div class="step"><h3>Entrez</h3><p>Présentez le QR à l'entrée. Le contrôleur le scanne et le résultat s'affiche tout de suite.</p></div>
+    </div>
+
+    <div class="steps" id="tab-organisateur" role="tabpanel">
+      <div class="step"><h3>Créez</h3><p>Décrivez l'événement, ajoutez les tarifs, les quotas et les conditions. Enregistrez en brouillon si besoin.</p></div>
+      <div class="step"><h3>Publiez</h3><p>Une page publique, un lien et un QR code sont générés pour vos affiches, flyers et réseaux sociaux.</p></div>
+      <div class="step"><h3>Vendez</h3><p>Suivez les visites, les ventes et les canaux qui fonctionnent. Ajoutez des agents pour les ventes physiques.</p></div>
+      <div class="step"><h3>Contrôlez</h3><p>Invitez vos contrôleurs : chacun scanne avec son propre téléphone et vous suivez les entrées en direct.</p></div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar"><h3>Découvrir</h3><p>Un seul endroit pour trouver quoi faire.</p></div>
+      <div class="pillar"><h3>Organiser</h3><p>Des outils faits pour les organisateurs locaux.</p></div>
+      <div class="pillar"><h3>Réserver</h3><p>Un paiement simple, un billet immédiat.</p></div>
+      <div class="pillar"><h3>Participer</h3><p>Une entrée fluide, sans papier ni file inutile.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ORGANISATEURS ====================== -->
+<section class="section section--dark" id="organisateurs">
+  <div class="container split">
+    <div>
+      <div class="section-head" style="margin-bottom:2.2rem">
+        <h2>Remplissez votre salle, gardez la main sur vos ventes</h2>
+        <p>Un espace organisateur pour publier, vendre, promouvoir et contrôler les accès, sans outils compliqués.</p>
+      </div>
+      <div class="features">
+        <div class="feature"><span class="ico"><svg class="ic"><use href="#i-share"/></svg></span><div><h3>Une page, un lien, un QR code</h3><p>Chaque événement a sa page publique à partager sur WhatsApp, Facebook ou sur une affiche.</p></div></div>
+        <div class="feature"><span class="ico"><svg class="ic"><use href="#i-tag"/></svg></span><div><h3>Tarifs et codes promo</h3><p>Plusieurs catégories de billets, quotas, prévente, invitations et codes de réduction.</p></div></div>
+        <div class="feature"><span class="ico"><svg class="ic"><use href="#i-users"/></svg></span><div><h3>Une équipe de contrôle</h3><p>Vos contrôleurs utilisent leur téléphone comme scanner, avec des droits limités à votre événement.</p></div></div>
+        <div class="feature"><span class="ico"><svg class="ic"><use href="#i-chart"/></svg></span><div><h3>Des chiffres en clair</h3><p>Ventes, fréquentation, origine des visites : sachez ce qui marche avant le jour J.</p></div></div>
+        <div class="feature"><span class="ico"><svg class="ic"><use href="#i-wallet"/></svg></span><div><h3>Des paiements transparents</h3><p>Chaque vente, chaque frais et chaque reversement est lisible dans votre tableau de bord.</p></div></div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:1.6rem">Tarifs de lancement indicatifs</h3>
+      <p style="color:#b8b4aa">Commencez gratuitement : vous ne payez que lorsque vous vendez.</p>
+      <div class="plans">
+        <div class="plan">
+          <div><h3>Essentiel</h3><p>Sans abonnement. Commission de 7 % + 0,25 $ par billet payant.</p></div>
+          <div class="plan-price">0 $<small> /mois</small></div>
+        </div>
+        <div class="plan plan--featured">
+          <div><h3>Pro</h3><p>Statistiques détaillées, équipe de contrôle étendue, supports de promotion.</p></div>
+          <div class="plan-price">25 $<small> /mois</small></div>
+        </div>
+        <div class="plan">
+          <div><h3>Premium</h3><p>Mise en avant sur la plateforme et accompagnement dédié.</p></div>
+          <div class="plan-price">75 $<small> /mois</small></div>
+        </div>
+      </div>
+      <p class="plans-note">Tarifs indicatifs, susceptibles d'évoluer avant le lancement. Les événements gratuits restent possibles.</p>
+      <a href="#contact" class="btn btn--primary" style="margin-top:1.4rem">Devenir organisateur partenaire</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== BILLET QR ====================== -->
+<section class="section" id="billet">
+  <div class="container checker">
+    <div>
+      <h2>Un billet qui ne s'utilise qu'une fois</h2>
+      <p style="color:var(--muted);font-size:1.15rem">Chaque billet porte un QR code personnel. À l'entrée, le scanner dit immédiatement si le billet est bon, déjà utilisé ou invalide.</p>
+      <ul class="check-list">
+        <li><svg class="ic"><use href="#i-shield"/></svg><span><strong>Usage unique.</strong> Un billet accepté une fois passe en « déjà utilisé » et ne peut plus servir.</span></li>
+        <li><svg class="ic"><use href="#i-phone"/></svg><span><strong>Le téléphone suffit.</strong> Les contrôleurs scannent depuis leur propre mobile, sans matériel spécial.</span></li>
+        <li><svg class="ic"><use href="#i-qr"/></svg><span><strong>Un QR pour chaque usage.</strong> Le QR public d'un événement ouvre sa page, il ne donne jamais accès à la salle.</span></li>
+        <li><svg class="ic"><use href="#i-chart"/></svg><span><strong>Un journal de contrôle.</strong> L'organisateur voit qui est entré, à quelle heure et à quel point d'accès.</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="phone" aria-label="Simulation du scanner de contrôle">
+        <div class="phone-screen">
+          <div class="phone-top">Scanner de contrôle · Soirée rumba live</div>
+          <div class="phone-qr">
+            <div id="scanQr"></div>
+            <span class="scanline" id="scanLine"></span>
+          </div>
+          <div class="result" id="scanResult" role="status" aria-live="polite">
+            <svg class="ic"><use href="#i-qr"/></svg>
+            <div><strong>Prêt à scanner</strong><span>Choisissez un cas ci-dessous pour essayer.</span></div>
+          </div>
+          <div class="sim-buttons" id="simButtons">
+            <button data-case="ok">Billet valide</button>
+            <button data-case="used">Déjà utilisé</button>
+            <button data-case="bad">Faux billet</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PAIEMENTS ====================== -->
+<section class="section section--soft" style="padding:3.5rem 0">
+  <div class="container" style="display:flex;flex-wrap:wrap;gap:1.5rem 3rem;align-items:center;justify-content:space-between">
+    <div style="max-width:26rem">
+      <h3 style="font-size:1.4rem;margin-bottom:.3rem">Payez comme vous en avez l'habitude</h3>
+      <p style="margin:0;color:var(--muted)">Intégrations prévues avec les principaux moyens de paiement en RDC.</p>
+    </div>
+    <ul style="display:flex;flex-wrap:wrap;gap:.7rem">
+      <li class="chip is-active" style="cursor:default">M-Pesa</li>
+      <li class="chip is-active" style="cursor:default">Airtel Money</li>
+      <li class="chip is-active" style="cursor:default">Orange Money</li>
+      <li class="chip is-active" style="cursor:default">Afrimoney</li>
+      <li class="chip is-active" style="cursor:default">Cartes bancaires</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====================== TOURISME ====================== -->
+<section class="section" id="tourisme">
+  <div class="container">
+    <div class="tour">
+      <div class="tour-visual" aria-hidden="true"><svg class="ic"><use href="#i-compass"/></svg></div>
+      <div class="tour-text">
+        <h2>Découvrez la RDC autrement</h2>
+        <p>Après les événements, YaBeto Event ouvrira ses pages aux sites, musées, guides et opérateurs d'activités. Chacun présente son offre, reçoit des réservations et partage un QR code pour se faire connaître.</p>
+        <ul class="tour-tags">
+          <li>Visites guidées</li><li>Sites culturels</li><li>Excursions</li><li>Gastronomie locale</li><li>Randonnées encadrées</li>
+        </ul>
+        <p style="font-size:.95rem">Une réservation n'est confirmée que lorsque le prestataire l'a acceptée.</p>
+        <a href="#contact" class="btn btn--light">Proposer mon site ou mon activité</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== À PROPOS ====================== -->
+<section class="section section--soft" id="apropos">
+  <div class="container about">
+    <div>
+      <h2>Ce qui nous rassemble</h2>
+      <p style="font-size:1.15rem;color:var(--muted)">À Kinshasa, l'information sur les événements est dispersée et la billetterie reste souvent manuelle. YaBeto Event veut aider les organisateurs congolais à remplir leurs événements, et les participants à les trouver, y accéder et payer en confiance.</p>
+
+      <div class="values">
+        <div class="value"><h3>Simplicité</h3><p>Moins d'étapes, des écrans lisibles, un téléphone suffit.</p></div>
+        <div class="value"><h3>Confiance</h3><p>Billets sécurisés, paiements tracés, règles claires.</p></div>
+        <div class="value"><h3>Transparence</h3><p>Des frais affichés avant chaque paiement.</p></div>
+        <div class="value"><h3>Proximité</h3><p>Pensé pour Kinshasa : Mobile Money, WhatsApp, connexion variable.</p></div>
+      </div>
+
+      <div class="about-card">
+        <p>YaBeto Event est porté par <strong>OXYGEN Holding</strong>, sous la direction de son CEO &amp; Founder, <strong>Sahélien Habel'aziz Azeez</strong>.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:1.5rem;margin-bottom:1.6rem">La feuille de route</h3>
+      <div class="timeline">
+        <div class="t-item"><h3>Valider avec le terrain</h3><p>Enquêtes et échanges avec des organisateurs, des participants et des lieux de Kinshasa.</p></div>
+        <div class="t-item"><h3>Billetterie et contrôle d'accès</h3><p>Création d'événements, vente de billets QR, paiement mobile et scanner de contrôle.</p></div>
+        <div class="t-item"><h3>Pilote, puis lancement à Kinshasa</h3><p>Premiers événements réels avec des organisateurs partenaires, puis ouverture au public.</p></div>
+        <div class="t-item"><h3>Outils de promotion et tourisme</h3><p>Supports de promotion, statistiques avancées et pages pour les sites et activités touristiques.</p></div>
+        <div class="t-item"><h3>Autres villes de la RDC</h3><p>Extension progressive, selon les résultats obtenus à Kinshasa.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FAQ ====================== -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <h2>Questions fréquentes</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Quand YaBeto Event sera-t-il disponible ?</summary>
+        <p>Le lancement est prévu à Kinshasa. Inscrivez-vous avec le formulaire de contact : nous vous prévenons par e-mail ou WhatsApp dès l'ouverture.</p>
+      </details>
+      <details>
+        <summary>Dois-je créer un compte pour voir les événements ?</summary>
+        <p>Non. Vous pouvez parcourir et filtrer les événements librement. Le compte est demandé au moment d'acheter ou de réserver.</p>
+      </details>
+      <details>
+        <summary>Quels moyens de paiement seront acceptés ?</summary>
+        <p>Mobile Money (M-Pesa, Airtel Money, Orange Money, Afrimoney) et cartes bancaires, au fur et à mesure des intégrations. Des ventes physiques par des agents autorisés sont aussi prévues.</p>
+      </details>
+      <details>
+        <summary>Comment mon billet est-il protégé contre la fraude ?</summary>
+        <p>Chaque billet a un QR code personnel. Dès que le premier contrôle est accepté, le billet passe en « déjà utilisé ». Un QR falsifié, inconnu ou lié à un autre événement est refusé.</p>
+      </details>
+      <details>
+        <summary>Que se passe-t-il si la connexion est mauvaise le jour J ?</summary>
+        <p>Votre billet reste accessible dans « Mes billets ». Pour les équipes de contrôle, un mode hors ligne est prévu, avec des limites que nous expliquons aux organisateurs.</p>
+      </details>
+      <details>
+        <summary>Combien coûte l'organisation d'un événement ?</summary>
+        <p>L'offre de base n'a pas d'abonnement : une commission s'applique sur les billets payants. Des offres Pro et Premium s'ajoutent pour les organisateurs réguliers. Les tarifs affichés sont indicatifs avant le lancement.</p>
+      </details>
+      <details>
+        <summary>Puis-je être remboursé si un événement est annulé ?</summary>
+        <p>Oui, selon la politique de l'événement. Vous suivez l'état de votre demande dans votre espace, et le billet passe en « remboursé » une fois le remboursement effectué.</p>
+      </details>
+      <details>
+        <summary>Comment devenir partenaire ?</summary>
+        <p>Organisateurs, lieux, sites touristiques, guides, sponsors : écrivez-nous via le formulaire ci-dessous en précisant votre profil, nous revenons vers vous.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CONTACT ====================== -->
+<section class="section" id="contact" style="padding-top:0">
+  <div class="container">
+    <div class="contact">
+      <div>
+        <h2>Soyez parmi les premiers</h2>
+        <p style="font-size:1.1rem">Laissez-nous vos coordonnées. Nous vous prévenons du lancement et répondons à vos questions de partenariat.</p>
+        <div class="contact-info">
+          <a href="tel:+243863000832"><svg class="ic"><use href="#i-call"/></svg>+243 863 000 832</a>
+          <a href="https://wa.me/243863000832" target="_blank" rel="noopener"><svg class="ic"><use href="#i-share"/></svg>Écrire sur WhatsApp</a>
+          <a href="mailto:oxygenholding01@gmail.com"><svg class="ic"><use href="#i-mail"/></svg>oxygenholding01@gmail.com</a>
+          <div><svg class="ic"><use href="#i-pin"/></svg>Kinshasa, République démocratique du Congo</div>
+        </div>
+      </div>
+
+      <form class="form" id="contactForm" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="nom">Nom complet</label>
+            <input type="text" id="nom" name="nom" autocomplete="name" required>
+            <span class="error">Indiquez votre nom.</span>
+          </div>
+          <div class="field">
+            <label for="profil">Vous êtes</label>
+            <select id="profil" name="profil" required>
+              <option value="">Choisir…</option>
+              <option>Participant</option>
+              <option>Organisateur d'événements</option>
+              <option>Lieu ou salle</option>
+              <option>Site ou guide touristique</option>
+              <option>Sponsor ou partenaire</option>
+              <option>Autre</option>
+            </select>
+            <span class="error">Choisissez un profil.</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="contactInfo">E-mail ou téléphone</label>
+          <input type="text" id="contactInfo" name="contact" autocomplete="email" required>
+          <span class="error">Indiquez un e-mail ou un numéro valide.</span>
+        </div>
+        <div class="field">
+          <label for="message">Message (facultatif)</label>
+          <textarea id="message" name="message" placeholder="Parlez-nous de votre événement ou de votre besoin"></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--block">Envoyer ma demande</button>
+        <p class="form-ok" id="formOk" role="status">Merci ! Votre application e-mail s'ouvre avec votre message prêt à envoyer.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ====================== PIED DE PAGE ====================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="/images/yabetoLogo.jpeg" alt="Logo YaBeto Event, ce qui nous rassemble.">
+        <p style="max-width:20rem;font-size:.96rem">Découvrir. Organiser. Réserver. Participer. La billetterie et la découverte d'événements pensées pour Kinshasa.</p>
+      </div>
+      <div>
+        <h4>Plateforme</h4>
+        <ul>
+          <li><a href="#evenements">Événements</a></li>
+          <li><a href="#fonctionnement">Fonctionnement</a></li>
+          <li><a href="#billet">Billet QR</a></li>
+          <li><a href="#tourisme">Tourisme</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#organisateurs">Organisateurs</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+243863000832">+243 863 000 832</a></li>
+          <li><a href="mailto:oxygenholding01@gmail.com">oxygenholding01@gmail.com</a></li>
+          <li>Kinshasa, RDC</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> YaBeto Event, by OXYGEN Holding. Tous droits réservés.</span>
+      <span>RCCM : CD/KNM/RCCM/26-A-11296</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
